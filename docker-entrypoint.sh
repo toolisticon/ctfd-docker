@@ -31,4 +31,4 @@ fi
 
 # Start CTFd
 echo "Starting CTFd"
-uwsgi --socket 127.0.0.1:8000 --protocol=http -w "CTFd:create_app()" --logto "${LOG_FOLDER:-/opt/CTFd/CTFd/logs}/uwsgi.log"
+uwsgi --socket 0.0.0.0:8000 --protocol=http -w "CTFd:create_app()" --logto "${LOG_FOLDER:-/opt/CTFd/CTFd/logs}/uwsgi.log"
