@@ -29,11 +29,6 @@ if [ -z "$WORKERS" ]; then
     WORKERS=1
 fi
 
-if [ -n "$SERVER_ROOT" ]; then
-  /opt/CTFd/ctfd.ini.sh
-  ln -s /etc/uwsgi/apps-available/ctfd.ini /etc/uwsgi/apps-enabled/ctfd.ini
-fi
-
 # Start CTFd
 echo "Starting CTFd"
-uwsgi --socket 0.0.0.0:8000 --protocol=http -w "CTFd:create_app()" --logto "${LOG_FOLDER:-/opt/CTFd/CTFd/logs}/uwsgi.log"
+uwsgi --socket 0.0.0.0:8000 --protocol=http --mount "$SERVER_ROOT"="CTFd:create_app()" --manage-script-name --logto "${LOG_FOLDER:-/opt/CTFd/CTFd/logs}/uwsgi.log"
