@@ -28,7 +28,7 @@ node {
         }
 
         stage('Build') {
-            image = docker.build('toolisticon/cfd')
+            image = docker.build('toolisticon/ctf')
         }
 
         stage('Test') {
