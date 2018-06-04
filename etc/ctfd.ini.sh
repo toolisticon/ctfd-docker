@@ -1,6 +1,7 @@
 #!/bin/sh
-
-cat <<EOF > /etc/uwsgi/apps-available
+mkdir -p /etc/uwsgi/apps-available
+mkdir -p /etc/uwsgi/apps-enabled/
+cat <<EOF > /etc/uwsgi/apps-available/ctfd.ini
 # UWSGI Configuration File
 # Install uwsgi (sudo apt-get install uwsgi), copy this file to
 # /etc/uwsgi/apps-available and then link it in /etc/uwsgi/apps-enabled
