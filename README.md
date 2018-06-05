@@ -5,3 +5,25 @@
 [![Docker Build Status](https://img.shields.io/docker/build/toolisticon/ctf.svg)](https://hub.docker.com/r/toolisticon/ctf/)
 
 > Production ready CTFd Docker image
+
+# Deployment
+
+You can set CTFd to a subpath, e.g /ctfd
+
+Just add an environment variable during booting this image
+```
+SERVER_ROOT=/ctf
+```
+
+And now you can use nginx to proxy:
+
+```
+location /ctf/ {
+     proxy_set_header Host $host;
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     proxy_set_header X-Scheme $scheme;
+     proxy_set_header X-Script-Name /ctf;
+     proxy_pass http://127.0.0.1:8000;
+ }
+ ```
