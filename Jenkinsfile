@@ -32,9 +32,7 @@ node {
         }
 
         stage('Test') {
-            image.inside {
-              // TODO
-            }
+            // TODO
         }
 
         stage('Deploy') {
